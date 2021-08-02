@@ -7,12 +7,14 @@ public class Employee{
     private String firstName;
     private String lastName;
     private int annualSalary;
+    private int paymentMonth;
     private double superRate;
 
-    public Employee(String firstName, String lastName, int annualSalary, double superRate) {
+    public Employee(String firstName, String lastName, int annualSalary, int paymentMonth, double superRate) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.annualSalary = annualSalary;
+        this.paymentMonth = paymentMonth;
         this.superRate = superRate;
     }
 
@@ -27,6 +29,11 @@ public class Employee{
     public int getAnnualSalary() {
         return annualSalary;
     }
+
+    public int getPaymentMonth() {
+        return paymentMonth;
+    }
+
 
     public double getSuperRate() {
         return superRate;
@@ -47,10 +54,6 @@ public class Employee{
     public void setSuperRate(double superRate) {
         this.superRate = superRate;
     }
-
-//    public Payslip generatePayslip(int month) {
-//        return new Payslip(this, month);
-//    }
 
     @Override
     public String toString() {
