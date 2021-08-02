@@ -1,0 +1,21 @@
+[ {
+  "firstName" : "David",
+  "lastName" : "Rudd",
+  "annualSalary" : 60050,
+  "superRate" : 0.09,
+  "paymentMonth" : "FEBRUARY",
+  "grossIncome" : 5004,
+  "incomeTax" : 922,
+  "netIncome" : 4082,
+  "superAnnuation" : 450
+}, {
+  "firstName" : "Ryan",
+  "lastName" : "Chen",
+  "annualSalary" : 120000,
+  "superRate" : 0.1,
+  "paymentMonth" : "FEBRUARY",
+  "grossIncome" : 10000,
+  "incomeTax" : 2669,
+  "netIncome" : 7331,
+  "superAnnuation" : 1000
+} ]
