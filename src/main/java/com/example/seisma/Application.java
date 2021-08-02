@@ -38,10 +38,10 @@ public class Application implements CommandLineRunner {
 
 			payslips.add(pay);
 		}
-
-		for(Payslip payslip : payslips) {
-			System.out.println(payslip);
-		}
+//
+//		for(Payslip payslip : payslips) {
+//			System.out.println(payslip);
+//		}
 
 		ObjectWriter writer = obj.writer(new DefaultPrettyPrinter());
 
