@@ -47,9 +47,7 @@ public class FileController {
     }
 
     @GetMapping("/downloadJson")
-    public ResponseEntity<byte[]> downloadJsonFile(@PathVariable String fileName, HttpServletRequest request) {
-        Resource resource = fileStorageService.loadFileAsResource(fileName);
-
+    public ResponseEntity<byte[]> downloadJsonFile() {
         ArrayList<Payslip> payslips = generatePayslipData();
 
         String payslipsJsonString = jsonExporter.export(payslips);
@@ -58,7 +56,7 @@ public class FileController {
 
         return ResponseEntity
                 .ok()
-                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment;filename=results4.json")
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment;filename=results.json")
                 .contentType(MediaType.APPLICATION_JSON)
                 .contentLength(payslipsJsonBytes.length)
                 .body(payslipsJsonBytes);

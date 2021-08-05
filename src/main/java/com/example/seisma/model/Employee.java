@@ -34,7 +34,6 @@ public class Employee{
         return paymentMonth;
     }
 
-
     public double getSuperRate() {
         return superRate;
     }

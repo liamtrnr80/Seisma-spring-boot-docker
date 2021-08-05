@@ -2,8 +2,59 @@
 A coding exercise for Seisma
 
 ## Instructions
+To access the webapp click the following link:
+http://ec2-18-218-92-19.us-east-2.compute.amazonaws.com:8080/ <br>
 
+Select your valid json file and submit to be able to receive pay slip results
 
+###A valid Json file (Replacing <> with actual values):
+```
+[
+  {
+    "firstName":"<Insert First Name>",
+    "lastName":"<Insert Last Name>",
+    "annualSalary":<Insert annual Salary>,
+    "paymentMonth":<Insert month as int (e.g. 0 - 11>,
+    "superRate":<Insert superRate>
+  }
+]
+
+```
+
+###An example Json file:
+```
+[
+  {
+    "firstName":"David",
+    "lastName":"Rudd",
+    "annualSalary":60050,
+    "paymentMonth":1,
+    "superRate":0.09
+  },
+  {
+    "firstName":"Ryan",
+    "lastName":"Chen",
+    "annualSalary":120000,
+    "paymentMonth":1,
+    "superRate":0.1
+  },
+  {
+    "firstName":"Yuno",
+    "lastName":"Sykk",
+    "annualSalary":600000,
+    "paymentMonth":1,
+    "superRate":0.2
+  },
+  {
+    "firstName":"Irwin",
+    "lastName":"Dundee",
+    "annualSalary":80000,
+    "paymentMonth":1,
+    "superRate":0.1
+  }
+]
+
+```
 
 ## Docker Quickstart
 Run the web app with Docker by running the following command:
@@ -18,7 +69,7 @@ docker run -d -p 8123:8080 liamtrnr80/seisma-spring-boot-docker:latest
 To build your own Docker Image, do the following:
 1. Clone the repo
 ```
-git clone https://github.com/liamtrnr80/CodingExercise.git
+git clone https://github.com/liamtrnr80/Seisma-spring-boot-docker.git
 cd CodingExercise
 ```
 2. Run the Docker build command:

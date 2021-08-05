@@ -12,5 +12,19 @@
     "annualSalary":120000,
     "paymentMonth":1,
     "superRate":0.1
+  },
+  {
+    "firstName":"Yuno",
+    "lastName":"Sykk",
+    "annualSalary":600000,
+    "paymentMonth":1,
+    "superRate":0.2
+  },
+  {
+    "firstName":"Irwin",
+    "lastName":"Dundee",
+    "annualSalary":80000,
+    "paymentMonth":1,
+    "superRate":0.1
   }
 ]
