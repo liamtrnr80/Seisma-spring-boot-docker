@@ -1,11 +1,9 @@
 package com.example.seisma.model;
 
-public class TaxableIncome {
+public class TaxBracket {
 
     private int to;
     private int from;
 
     
-
-
 }
