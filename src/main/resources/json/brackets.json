@@ -2,26 +2,26 @@
   {
     "fromBracket": 0,
     "percent": 0,
-    "tax": 0
+    "lump": 0
   },
   {
-    "fromBracket": 18201,
+    "fromBracket": 18200,
     "percent": 19,
-    "tax": 0
+    "lump": 0
   },
   {
-    "fromBracket": 37001,
+    "fromBracket": 37000,
     "percent": 32.5,
-    "tax": 3572
+    "lump": 3572
   },
   {
-    "fromBracket": 87001,
+    "fromBracket": 87000,
     "percent": 37,
-    "tax": 19822
+    "lump": 19822
   },
   {
-    "fromBracket": 180001,
+    "fromBracket": 180000,
     "percent": 45,
-    "tax": 54232
+    "lump": 54232
   }
 ]

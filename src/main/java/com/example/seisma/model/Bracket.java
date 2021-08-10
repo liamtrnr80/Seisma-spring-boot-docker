@@ -8,32 +8,30 @@ import java.io.IOException;
 import java.io.Reader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Collections;
 import java.util.List;
 
 public class Bracket {
 
     private int fromBracket;
     private double percent;
-    private int tax;
+    private int lump;
 
     public static List<Bracket> brackets;
 
-    public Bracket() {
-        if(brackets.isEmpty()) {
-            initBrackets();
-        }
-    }
-
-    public Bracket(int fromBracket, double percent, int tax) {
+    public Bracket(int fromBracket, double percent, int lump) {
         this.fromBracket = fromBracket;
         this.percent = percent;
-        this.tax = tax;
+        this.lump = lump;
 
         brackets.add(this);
     }
 
-    public int getTax() {
-        return tax;
+    public Bracket() {
+    }
+
+    public int getLump() {
+        return lump;
     }
 
     public double getPercent() {
@@ -45,6 +43,10 @@ public class Bracket {
     }
 
     public void initBrackets() {
+        if(!(brackets == null || brackets.isEmpty())) {
+            return;
+        }
+
         try {
             Reader reader = Files.newBufferedReader(Paths.get("src/main/resources/json/brackets.json"));
 
@@ -52,32 +54,22 @@ public class Bracket {
 
             reader.close();
 
-        } catch(IOException e) {
+        } catch (IOException e) {
             throw new FileStorageException("Could not read JSON file", e);
         }
     }
 
     public int getIncomeTax(double annual) {
         double tax = 0;
+        Collections.reverse(brackets);
+        Bracket result = brackets.stream()
+                .filter(b -> annual > b.fromBracket)
+                .findFirst()
+                .orElse(null);
 
-//        List<Bracket> result = brackets.stream()
-//                .filter(item ->)
-
-        if (annual <= 18200) {
-            tax = annual / 12;
-        } else if (annual <= 37000) {
-            tax = Math.rint(((annual - 18200) * 0.19) / 12);
-        } else if (annual <= 87000) {
-            tax = Math.rint((3572 + (annual - 37000) * 0.325) / 12);
-        } else if (annual <= 180000) {
-            tax = Math.rint((19822 + (annual - 87000) * 0.37) / 12);
-        } else if (annual >= 180001) {
-            tax = Math.rint((54232 + (annual - 180000) * 0.45) / 12);
-        } else {
-            System.out.println("Incorrect Input, please try again later");
-        }
-
-        return (int) Math.rint(tax);
+        assert result != null;
+        Collections.reverse(brackets);
+        return (int) Math.rint((lump + (annual - result.fromBracket) * (result.percent / 100)) / 12);
     }
 
     @Override
@@ -85,7 +77,7 @@ public class Bracket {
         return "Bracket{" +
                 "fromBracket=" + fromBracket +
                 ", percent=" + percent +
-                ", tax=" + tax +
+                ", lump=" + lump +
                 '}';
     }
 }

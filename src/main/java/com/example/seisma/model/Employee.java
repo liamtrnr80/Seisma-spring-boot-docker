@@ -1,7 +1,5 @@
 package com.example.seisma.model;
 
-import java.time.Month;
-
 public class Employee{
 
     private String firstName;

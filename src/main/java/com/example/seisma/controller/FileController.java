@@ -68,8 +68,10 @@ public class FileController {
 
     public ArrayList<Payslip> generatePayslipData() {
         ArrayList<Payslip> payslips = new ArrayList<>();
-        new Bracket();
-        logger.debug(Bracket.brackets.toString());
+
+        new Bracket().initBrackets();
+        logger.info(Bracket.brackets.toString());
+
         try {
             Reader reader = Files.newBufferedReader(Paths.get("src/main/resources/json/employee.json"));
 
@@ -77,13 +79,16 @@ public class FileController {
 
             for(Employee employee : employees) {
                 payslips.add(new Payslip(employee));
+                logger.info(Bracket.brackets.toString());
             }
+
             reader.close();
 
             return payslips;
         } catch (IOException e) {
             throw new FileStorageException("Could not generate payslip data.", e);
         }
+
     }
 
     @GetMapping("/downloadFile/{fileName:.+}")
