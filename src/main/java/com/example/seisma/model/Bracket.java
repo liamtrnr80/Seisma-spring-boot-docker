@@ -69,7 +69,7 @@ public class Bracket {
 
         assert result != null;
         Collections.reverse(brackets);
-        return (int) Math.rint((lump + (annual - result.fromBracket) * (result.percent / 100)) / 12);
+        return (int) Math.rint((result.lump + (annual - result.fromBracket) * result.percent / 100) / 12);
     }
 
     @Override

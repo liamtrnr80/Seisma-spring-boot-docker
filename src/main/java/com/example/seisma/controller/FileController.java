@@ -70,7 +70,6 @@ public class FileController {
         ArrayList<Payslip> payslips = new ArrayList<>();
 
         new Bracket().initBrackets();
-        logger.info(Bracket.brackets.toString());
 
         try {
             Reader reader = Files.newBufferedReader(Paths.get("src/main/resources/json/employee.json"));
@@ -79,7 +78,6 @@ public class FileController {
 
             for(Employee employee : employees) {
                 payslips.add(new Payslip(employee));
-                logger.info(Bracket.brackets.toString());
             }
 
             reader.close();
