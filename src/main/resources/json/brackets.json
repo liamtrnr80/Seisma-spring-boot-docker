@@ -1,11 +1,13 @@
 [
   {
     "fromBracket": 0,
-    "toBracket": 18200
+    "percent": 0,
+    "tax": 0
   },
   {
     "fromBracket": 18201,
-    "percent": 19
+    "percent": 19,
+    "tax": 0
   },
   {
     "fromBracket": 37001,

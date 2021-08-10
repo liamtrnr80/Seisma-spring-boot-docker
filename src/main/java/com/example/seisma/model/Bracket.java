@@ -24,19 +24,6 @@ public class Bracket {
         }
     }
 
-    public Bracket(int fromBracket) {
-        this.fromBracket = fromBracket;
-
-        brackets.add(this);
-    }
-
-    public Bracket(int fromBracket, double percent) {
-        this.fromBracket = fromBracket;
-        this.percent = percent;
-
-        brackets.add(this);
-    }
-
     public Bracket(int fromBracket, double percent, int tax) {
         this.fromBracket = fromBracket;
         this.percent = percent;

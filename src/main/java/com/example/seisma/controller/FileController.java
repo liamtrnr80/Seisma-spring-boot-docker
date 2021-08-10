@@ -68,7 +68,8 @@ public class FileController {
 
     public ArrayList<Payslip> generatePayslipData() {
         ArrayList<Payslip> payslips = new ArrayList<>();
-        logger.debug(new Bracket().toString());
+        new Bracket();
+        logger.debug(Bracket.brackets.toString());
         try {
             Reader reader = Files.newBufferedReader(Paths.get("src/main/resources/json/employee.json"));
 
