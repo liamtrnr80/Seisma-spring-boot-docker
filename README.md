@@ -7,7 +7,7 @@ http://ec2-18-218-92-19.us-east-2.compute.amazonaws.com:8080/ <br>
 
 Select your valid json file and submit to be able to receive pay slip results
 
-###A valid Json file (Replacing <> with actual values):
+###A valid employee.json file (Replacing <> with actual values):
 ```
 [
   {
@@ -21,7 +21,7 @@ Select your valid json file and submit to be able to receive pay slip results
 
 ```
 
-###An example Json file:
+###An example employee.json file:
 ```
 [
   {
@@ -54,6 +54,47 @@ Select your valid json file and submit to be able to receive pay slip results
   }
 ]
 
+```
+###A valid bracket.json object:
+(Replacing <> with)
+```
+  {
+    "fromBracket": <lower bracket>,
+    "percent": <cent per dollar>,
+    "lump": <lump sum>
+  }
+```
+
+
+###A valid bracket.json file:
+```
+[
+  {
+    "fromBracket": 0,
+    "percent": 0,
+    "lump": 0
+  },
+  {
+    "fromBracket": 18200,
+    "percent": 19,
+    "lump": 0
+  },
+  {
+    "fromBracket": 37000,
+    "percent": 32.5,
+    "lump": 3572
+  },
+  {
+    "fromBracket": 87000,
+    "percent": 37,
+    "lump": 19822
+  },
+  {
+    "fromBracket": 180000,
+    "percent": 45,
+    "lump": 54232
+  }
+]
 ```
 
 ## Docker Quickstart
