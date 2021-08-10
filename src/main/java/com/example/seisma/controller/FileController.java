@@ -1,13 +1,14 @@
 package com.example.seisma.controller;
 
 import com.example.seisma.exception.FileStorageException;
+import com.example.seisma.model.Bracket;
 import com.example.seisma.model.Employee;
 import com.example.seisma.model.Payslip;
 import com.example.seisma.payload.UploadFileResponse;
 import com.example.seisma.service.FileStorageService;
 import com.example.seisma.service.JsonExporter;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,9 +21,12 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.File;
 import java.io.IOException;
+import java.io.Reader;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 public class FileController {
@@ -64,17 +68,16 @@ public class FileController {
 
     public ArrayList<Payslip> generatePayslipData() {
         ArrayList<Payslip> payslips = new ArrayList<>();
-        ObjectMapper obj = new ObjectMapper();
-
+        logger.debug(new Bracket().toString());
         try {
-            JsonNode nodes = obj.readTree(new File("src/main/resources/json/employee.json"));
+            Reader reader = Files.newBufferedReader(Paths.get("src/main/resources/json/employee.json"));
 
-            for (JsonNode node : nodes) {
-                Employee emp = new Employee(node.path("firstName").asText(), node.path("lastName").asText(), node.path("annualSalary").asInt(), node.path("paymentMonth").asInt(), node.path("superRate").asDouble());
-                Payslip pay = new Payslip(emp);
+            List<Employee> employees = new Gson().fromJson(reader, new TypeToken<List<Employee>>() {}.getType());
 
-                payslips.add(pay);
+            for(Employee employee : employees) {
+                payslips.add(new Payslip(employee));
             }
+            reader.close();
 
             return payslips;
         } catch (IOException e) {

@@ -1,0 +1,25 @@
+[
+  {
+    "fromBracket": 0,
+    "toBracket": 18200
+  },
+  {
+    "fromBracket": 18201,
+    "percent": 19
+  },
+  {
+    "fromBracket": 37001,
+    "percent": 32.5,
+    "tax": 3572
+  },
+  {
+    "fromBracket": 87001,
+    "percent": 37,
+    "tax": 19822
+  },
+  {
+    "fromBracket": 180001,
+    "percent": 45,
+    "tax": 54232
+  }
+]

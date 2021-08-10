@@ -18,29 +18,9 @@ public class Payslip {
         this.toDate = String.format("%d %s", Month.of(employee.getPaymentMonth() + 1).length(Year.isLeap(Calendar.YEAR)), Month.of(employee.getPaymentMonth() + 1));
         this.employee = employee;
         this.grossIncome = (int) Math.rint((double) employee.getAnnualSalary() / 12);
-        this.incomeTax = (int) Math.rint(getIncomeTax(employee.getAnnualSalary()));
+        this.incomeTax = new Bracket().getIncomeTax(employee.getAnnualSalary());
         this.superAnnuation = (int) Math.rint(grossIncome * employee.getSuperRate());
         this.netIncome = (int) Math.rint(grossIncome - incomeTax);
-    }
-
-    public static int getIncomeTax(double annual) {
-        double tax = 0;
-
-        if (annual <= 18200) {
-            tax = annual / 12;
-        } else if (annual <= 37000) {
-            tax = Math.rint(((annual - 18200) * 0.19) / 12);
-        } else if (annual <= 87000) {
-            tax = Math.rint((3572 + (annual - 37000) * 0.325) / 12);
-        } else if (annual <= 180000) {
-            tax = Math.rint((19822 + (annual - 87000) * 0.37) / 12);
-        } else if (annual >= 180001) {
-            tax = Math.rint((54232 + (annual - 180000) * 0.45) / 12);
-        } else {
-            System.out.println("Incorrect Input, please try again later");
-        }
-
-        return (int) tax;
     }
 
     public Employee getEmployee() {
