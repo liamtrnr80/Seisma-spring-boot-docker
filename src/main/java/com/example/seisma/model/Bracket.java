@@ -13,14 +13,14 @@ import java.util.List;
 
 public class Bracket {
 
-    private int fromBracket;
+    private int lowerThreshold;
     private double percent;
     private int lump;
 
     public static List<Bracket> brackets;
 
-    public Bracket(int fromBracket, double percent, int lump) {
-        this.fromBracket = fromBracket;
+    public Bracket(int lowerThreshold, double percent, int lump) {
+        this.lowerThreshold = lowerThreshold;
         this.percent = percent;
         this.lump = lump;
 
@@ -38,8 +38,8 @@ public class Bracket {
         return percent;
     }
 
-    public int getFromBracket() {
-        return fromBracket;
+    public int getLowerThreshold() {
+        return lowerThreshold;
     }
 
     public void initBrackets() {
@@ -63,19 +63,19 @@ public class Bracket {
         double tax = 0;
         Collections.reverse(brackets);
         Bracket result = brackets.stream()
-                .filter(b -> annual > b.fromBracket)
+                .filter(b -> annual > b.lowerThreshold)
                 .findFirst()
                 .orElse(null);
 
         assert result != null;
         Collections.reverse(brackets);
-        return (int) Math.rint((result.lump + (annual - result.fromBracket) * result.percent / 100) / 12);
+        return (int) Math.rint((result.lump + (annual - result.lowerThreshold) * result.percent / 100) / 12);
     }
 
     @Override
     public String toString() {
         return "Bracket{" +
-                "fromBracket=" + fromBracket +
+                "lowerThreshold=" + lowerThreshold +
                 ", percent=" + percent +
                 ", lump=" + lump +
                 '}';
