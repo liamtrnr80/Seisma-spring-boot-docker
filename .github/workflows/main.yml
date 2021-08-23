@@ -1,0 +1,14 @@
+on:
+#  push:
+#    branches: master
+  workflow_dispatch
+name: ci/cd
+
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        usesL Ac
