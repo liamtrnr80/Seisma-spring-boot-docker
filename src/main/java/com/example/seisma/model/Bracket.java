@@ -1,6 +1,5 @@
 package com.example.seisma.model;
 
-import com.example.seisma.exception.FileStorageException;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -48,19 +47,18 @@ public class Bracket {
         }
 
         try {
-            Reader reader = Files.newBufferedReader(Paths.get("src/main/resources/json/brackets.json"));
+            Reader reader = Files.newBufferedReader(Paths.get("classpath:json/brackets.json"));
 
             brackets = new Gson().fromJson(reader, new TypeToken<List<Bracket>>() {}.getType());
 
             reader.close();
 
         } catch (IOException e) {
-            throw new FileStorageException("Could not read JSON file", e);
+            e.printStackTrace();
         }
     }
 
     public int getIncomeTax(double annual) {
-        double tax = 0;
         Collections.reverse(brackets);
         Bracket result = brackets.stream()
                 .filter(b -> annual > b.lowerThreshold)

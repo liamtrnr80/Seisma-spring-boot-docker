@@ -17,7 +17,7 @@ public class FileController {
     private static final Logger logger = LoggerFactory.getLogger(FileController.class);
 
     @PostMapping(value = "/payslip", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ArrayList<Payslip> response(@RequestBody ArrayList<Employee> employees) {
+    public ArrayList<Payslip> generatePayslips(@RequestBody ArrayList<Employee> employees) {
         ArrayList<Payslip> payslips = new ArrayList<>();
         new Bracket().initBrackets();
 
