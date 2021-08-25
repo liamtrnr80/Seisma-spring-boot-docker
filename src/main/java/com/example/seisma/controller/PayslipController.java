@@ -13,19 +13,25 @@ import java.util.ArrayList;
 
 @RestController
 public class PayslipController {
+    private ArrayList<Payslip> payslips = new ArrayList<>();
+
 
     private static final Logger logger = LoggerFactory.getLogger(PayslipController.class);
 
     @PostMapping(value = "/payslip", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ArrayList<Payslip> generatePayslips(@RequestBody ArrayList<Employee> employees) {
-        ArrayList<Payslip> payslips = new ArrayList<>();
         new Bracket().initBrackets();
 
-        for (Employee employee : employees) {
+        for(Employee employee : employees) {
             System.out.println(employee);
             payslips.add(new Payslip(employee));
         }
 
+        return payslips;
+    }
+
+    @GetMapping(value = "/getPayslips", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ArrayList<Payslip> getPayslips() {
         return payslips;
     }
 

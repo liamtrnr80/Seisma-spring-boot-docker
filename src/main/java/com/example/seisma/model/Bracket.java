@@ -2,28 +2,30 @@ package com.example.seisma.model;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.mongodb.lang.NonNull;
 
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.Reader;
-import java.nio.file.Files;
-import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class Bracket {
 
+public class Bracket {
+    @NonNull
     private int lowerThreshold;
+    @NonNull
     private double percent;
+    @NonNull
     private int lump;
 
-    public static List<Bracket> brackets;
+    private static ArrayList<Bracket> taxBrackets = new ArrayList<>();
 
     public Bracket(int lowerThreshold, double percent, int lump) {
         this.lowerThreshold = lowerThreshold;
         this.percent = percent;
         this.lump = lump;
-
-        brackets.add(this);
     }
 
     public Bracket() {
@@ -42,32 +44,27 @@ public class Bracket {
     }
 
     public void initBrackets() {
-        if(!(brackets == null || brackets.isEmpty())) {
+        if(!(taxBrackets == null || taxBrackets.isEmpty())){
             return;
         }
 
-        try {
-            Reader reader = Files.newBufferedReader(Paths.get("classpath:json/brackets.json"));
-
-            brackets = new Gson().fromJson(reader, new TypeToken<List<Bracket>>() {}.getType());
-
-            reader.close();
-
+        try(Reader reader = new InputStreamReader(this.getClass().getResourceAsStream("/json/brackets.json"))) {
+            taxBrackets = new Gson().fromJson(reader, new TypeToken<List<Bracket>>() {}.getType());
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     public int getIncomeTax(double annual) {
-        Collections.reverse(brackets);
-        Bracket result = brackets.stream()
-                .filter(b -> annual > b.lowerThreshold)
+        Collections.reverse(taxBrackets);
+        Bracket result = taxBrackets.stream()
+                .filter(b -> annual > b.getLowerThreshold())
                 .findFirst()
                 .orElse(null);
 
         assert result != null;
-        Collections.reverse(brackets);
-        return (int) Math.rint((result.lump + (annual - result.lowerThreshold) * result.percent / 100) / 12);
+        Collections.reverse(taxBrackets);
+        return (int) Math.rint((result.getLump() + (annual - result.getLowerThreshold()) * result.getPercent() / 100) / 12);
     }
 
     @Override
