@@ -41,5 +41,5 @@ jobs:
           docker push $ECR_REGISTRY/ato-calc-repo:latest
           echo "::set-output name=image::$ECR_REGISTRY/ato-calc-repo:latest"
           echo "Updating task in service into deployed repository..."
-          aws ecs update-service --cluster AtoCluster --service AtoService --force-new-deployment
+          aws ecs update-service --cluster $ECR_CLUSTER --service $ECS_SERVICE --force-new-deployment
           echo "Task in service has successfuly updated."
