@@ -2,7 +2,6 @@ package com.example.seisma.model;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.mongodb.lang.NonNull;
 
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -11,13 +10,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-
 public class Bracket {
-    @NonNull
     private int lowerThreshold;
-    @NonNull
     private double percent;
-    @NonNull
     private int lump;
 
     private static ArrayList<Bracket> taxBrackets = new ArrayList<>();
