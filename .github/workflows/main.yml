@@ -36,10 +36,10 @@ jobs:
           # Builder a docker container and push it to ECR
           mvn clean install
           echo "Building Docker Image to $ECR_REGISTRY..."
-          docker build -t 015979761500.dkr.ecr.us-east-1.amazonaws.com/ato-calc-repo:latest .
+          docker build -t $ECR_REGISTRY/ato-calc-repo:latest .
           echo "Pushing image to ECR..."
-          docker push 015979761500.dkr.ecr.us-east-1.amazonaws.com/ato-calc-repo:latest
-          echo "::set-output name=image::015979761500.dkr.ecr.us-east-1.amazonaws.com/ato-calc-repo:$IMAGE_TAG"
+          docker push $ECR_REGISTRY/ato-calc-repo:latest
+          echo "::set-output name=image::$ECR_REGISTRY/ato-calc-repo:latest"
           echo "Updating task in service into deployed repository..."
           aws ecs update-service --cluster $ECS_CLUSTER --service $ECS_SERVICE --force-new-deployment
           echo "Task in service has successfuly updated."
