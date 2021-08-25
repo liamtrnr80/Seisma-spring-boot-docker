@@ -30,7 +30,7 @@ public class PayslipController {
         return payslips;
     }
 
-    @GetMapping(value = "/welcome", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/welcome")
     public String welcome() {
         return "Welcome";
     }
