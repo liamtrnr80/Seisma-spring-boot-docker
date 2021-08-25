@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 
 @RestController
-public class FileController {
+public class PayslipController {
 
-    private static final Logger logger = LoggerFactory.getLogger(FileController.class);
+    private static final Logger logger = LoggerFactory.getLogger(PayslipController.class);
 
     @PostMapping(value = "/payslip", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ArrayList<Payslip> generatePayslips(@RequestBody ArrayList<Employee> employees) {
