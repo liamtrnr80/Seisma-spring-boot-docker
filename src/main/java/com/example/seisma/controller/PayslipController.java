@@ -40,4 +40,8 @@ public class PayslipController {
         return payslips;
     }
 
+    @GetMapping("test")
+    public String test() {
+        return "Testing";
+    }
 }
