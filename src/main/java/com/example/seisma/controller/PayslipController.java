@@ -8,13 +8,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
-
 import java.util.ArrayList;
 
 @RestController
 public class PayslipController {
     private ArrayList<Payslip> payslips = new ArrayList<>();
-
 
     private static final Logger logger = LoggerFactory.getLogger(PayslipController.class);
 
@@ -42,6 +40,6 @@ public class PayslipController {
 
     @GetMapping("test")
     public String test() {
-        return "this is a story of girl who cried and drown and while she looked so sad in photographs, i absolutely love her when she smiles";
+        return "if you're racist and you know it clap your hands";
     }
 }
