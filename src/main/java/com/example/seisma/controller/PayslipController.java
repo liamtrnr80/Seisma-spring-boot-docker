@@ -40,6 +40,6 @@ public class PayslipController {
 
     @GetMapping("test")
     public String test() {
-        return "if you're racist and you know it clap your hands";
+        return "testing with the bois";
     }
 }
