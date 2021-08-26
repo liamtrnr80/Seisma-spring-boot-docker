@@ -40,6 +40,6 @@ public class PayslipController {
 
     @GetMapping("test")
     public String test() {
-        return "testing with the bois";
+        return "i hate aws";
     }
 }
